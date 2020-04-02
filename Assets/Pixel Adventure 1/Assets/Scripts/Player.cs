@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
             GameController.instance.ShowGameOver();
         }
     }
+
     void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 8)

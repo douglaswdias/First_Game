@@ -17,9 +17,9 @@ public class Fuits : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collider.gameObject.tag == "Player")
         {
             sr.enabled = false;//Deixa o componente Sprite Render desmarcado
             circle.enabled = false;//Deixa o componente Circle Collider2D desmarcado

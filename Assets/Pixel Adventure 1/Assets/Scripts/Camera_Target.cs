@@ -19,25 +19,28 @@ public class Camera_Target : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 targetPos = target.position;//Posição do alvo
-        if (yMinEnabled && yMaxEnabled)
-            targetPos.y = Mathf.Clamp(target.position.y, yMinValue, yMaxValue);
-        else if (yMinEnabled)
-            targetPos.y = Mathf.Clamp(target.position.y, yMinValue, target.position.y);
-        else if (yMaxEnabled)
-            targetPos.y = Mathf.Clamp(target.position.y, target.position.y, yMaxValue);
+        if (target != null)
+        {
+            Vector3 targetPos = target.position;//Posição do alvo
+            if (yMinEnabled && yMaxEnabled)
+                targetPos.y = Mathf.Clamp(target.position.y, yMinValue, yMaxValue);
+            else if (yMinEnabled)
+                targetPos.y = Mathf.Clamp(target.position.y, yMinValue, target.position.y);
+            else if (yMaxEnabled)
+                targetPos.y = Mathf.Clamp(target.position.y, target.position.y, yMaxValue);
         
-        if (xMinEnabled && xMaxEnabled)
-            targetPos.x = Mathf.Clamp(target.position.x, xMinValue, xMaxValue);
-        else if (xMinEnabled)
-            targetPos.x = Mathf.Clamp(target.position.x, xMinValue, target.position.x);
-        else if (xMaxEnabled)
-            targetPos.x = Mathf.Clamp(target.position.x, target.position.x, xMaxValue);
+            if (xMinEnabled && xMaxEnabled)
+                targetPos.x = Mathf.Clamp(target.position.x, xMinValue, xMaxValue);
+            else if (xMinEnabled)
+                targetPos.x = Mathf.Clamp(target.position.x, xMinValue, target.position.x);
+            else if (xMaxEnabled)
+                targetPos.x = Mathf.Clamp(target.position.x, target.position.x, xMaxValue);
 
-        targetPos.z = transform.position.z;//Alinha a camera no eixo z
-        transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);//Suavidade com que a camera se move
-        if (targetPos == null)
-            return;
+            targetPos.z = transform.position.z;//Alinha a camera no eixo z
+            transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);//Suavidade com que a camera se move
+            if (targetPos == null)
+                return;
+        }
     }
 
 }
