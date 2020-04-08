@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     public GameObject gameOver;
     public GameObject nextLevelPreview;
     public GameObject nextLevel;
+    public int nextLevelScore;
 
     // Start is called before the first frame update
     void Start()
@@ -42,5 +43,7 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene(lvlName);
     }
+
+
 
 }

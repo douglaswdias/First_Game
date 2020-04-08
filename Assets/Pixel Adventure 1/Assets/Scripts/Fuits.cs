@@ -29,7 +29,7 @@ public class Fuits : MonoBehaviour
             Destroy(gameObject, 0.5f);//Destroi o objeto
         }
 
-        if (GameController.instance.totalScore >= 100)
+        if (GameController.instance.totalScore == GameController.instance.nextLevelScore)
         {
             GameController.instance.ShowNextLevel();
         }

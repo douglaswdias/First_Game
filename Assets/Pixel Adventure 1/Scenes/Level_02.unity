@@ -2240,6 +2240,7 @@ MonoBehaviour:
   gameOver: {fileID: 1047991605}
   nextLevelPreview: {fileID: 2103448241}
   nextLevel: {fileID: 1419323022}
+  nextLevelScore: 120
 --- !u!4 &756380384
 Transform:
   m_ObjectHideFlags: 0
@@ -19820,6 +19821,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1865443425}
     m_Modifications:
+    - target: {fileID: 6484998781708291921, guid: 7328019fbd31809498ccbc8a18b64967,
+        type: 3}
+      propertyPath: score
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6484998781708291922, guid: 7328019fbd31809498ccbc8a18b64967,
         type: 3}
       propertyPath: m_Name
@@ -27515,6 +27521,11 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 761177647702558998, guid: 06744462d90e42e468308382ca9d98f3,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 6ed2fb225645a42498e9c45935e8af02, type: 2}
     - target: {fileID: 761177647702558999, guid: 06744462d90e42e468308382ca9d98f3,
         type: 3}
       propertyPath: m_EdgeRadius
