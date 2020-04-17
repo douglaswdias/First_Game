@@ -5,6 +5,7 @@ using UnityEngine;
 public class Trampolim : MonoBehaviour
 {
     private Animator anim;
+    public float jumpForce;
     
     // Start is called before the first frame update
     void Start()
@@ -12,11 +13,12 @@ public class Trampolim : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision1)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision1.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             anim.SetBool("Trigger", true);
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
     }
    
