@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == 8)
+        if(collision.gameObject.layer == 8 || collision.gameObject.layer == 10)
         {
             isJumping = false;
             anim.SetBool("Jump", false);
