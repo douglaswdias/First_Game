@@ -19902,7 +19902,7 @@ GameObject:
   - component: {fileID: 1291428370}
   - component: {fileID: 1291428372}
   - component: {fileID: 1291428374}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Bricks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27003,7 +27003,8 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 0.14999995
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 761177647702558999, guid: 06744462d90e42e468308382ca9d98f3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 06744462d90e42e468308382ca9d98f3, type: 3}
 --- !u!61 &6147028181236091208
 BoxCollider2D:

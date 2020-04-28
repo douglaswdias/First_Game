@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 761177647702558993}
   - component: {fileID: 761177647702558992}
-  - component: {fileID: 761177647702558999}
   - component: {fileID: 761177647702558998}
   - component: {fileID: 761177647702558994}
   - component: {fileID: 761177647702558995}
+  - component: {fileID: 5982631238899978816}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -86,32 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &761177647702558999
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761177647702558997}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.04}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.15, y: 0.23}
-  m_EdgeRadius: 0
 --- !u!50 &761177647702558998
 Rigidbody2D:
   serializedVersion: 4
@@ -149,6 +123,7 @@ MonoBehaviour:
   jumpForce: 10
   isJumping: 0
   doubleJump: 0
+  rig: {fileID: 0}
 --- !u!95 &761177647702558995
 Animator:
   serializedVersion: 3
@@ -168,3 +143,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &5982631238899978816
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761177647702558997}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0039389497, y: -0.04018062}
+  m_Size: {x: 0.20497355, y: 0.2364874}
+  m_Direction: 0
