@@ -29,20 +29,23 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);//Movimento horizontal padrão
-        transform.position += movement * Time.deltaTime * speed;
-        if(Input.GetAxis("Horizontal") > 0f)
+        /*Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);//Movimento horizontal padrão
+        transform.position += movement * Time.deltaTime * speed;*/
+        float movement = Input.GetAxis("Horizontal");
+        rig.velocity = new Vector2(movement * speed, rig.velocity.y);
+
+        if(movement > 0f)
         {
             anim.SetBool("Walk", true);
             transform.eulerAngles = new Vector3(0f, 0f, 0f);//Personagem encarando o lado direto
         }
-        if (Input.GetAxis("Horizontal") < 0f)
+        if (movement < 0f)
         {
             anim.SetBool("Walk", true);
             transform.eulerAngles = new Vector3(0f, 180f, 0f);//Rotaciona o eixo z 180, para encarar para a esquerda
         }
 
-        if (Input.GetAxis("Horizontal") == 0f)
+        if (movement == 0f)
         {
             anim.SetBool("Walk", false);
         }

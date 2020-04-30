@@ -7,14 +7,15 @@ public class Boss : MonoBehaviour
     private Rigidbody2D rig;
     private Animator anim;
     private Transform enemy_position;
-    public int bossSpeed = 1;
+    private int bossSpeed  = 2;
+    private int bossCurrentSpeed = 2;
     public Health_Bar bossHealthBar;
     public Health_Bar playerHealthBar;
-    public int bossMaxHealth = 3;
-    public int bossCurrentHealth= 3;
-    public int boss_State = 1;
-    public int playerMaxHealth = 5;
-    public int playerCurrentHealth = 5;
+    private int bossMaxHealth = 3;
+    private int bossCurrentHealth= 3;
+    private int boss_State = 1;
+    private int playerMaxHealth = 5;
+    private int playerCurrentHealth = 5;
     public Transform headPoint;
     public Transform leftCol;
     public Transform rightCol;
@@ -22,7 +23,14 @@ public class Boss : MonoBehaviour
     public CircleCollider2D circleCollider2D;
     bool player_Destroyed;
     private Transform target;
-    public float knockback;
+    private float knockback = 10;
+    bool bossHit = false;
+    bool playerHit = false;
+    float height;
+    float bossTimer;
+    float playerTimer;
+    bool vulnerable = true;
+    float invulnerable = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +49,43 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(bossHit == true)
+        {
+            bossTimer -= Time.deltaTime;
+            if(bossTimer <= 0)
+            {
+                bossTimer = 1;
+                bossHit = false;
+            }
+        }
+
+        if (vulnerable == false)
+        {
+            invulnerable -= Time.deltaTime;
+            if (invulnerable <= 0)
+            {
+                invulnerable = 2;
+                vulnerable = true;
+                bossCurrentSpeed += 1;
+                if(vulnerable == true)
+                {
+                    boss_State += 1;
+                    bossSpeed = bossCurrentSpeed;
+                }
+            }
+        }
+
+        if (playerHit == true)
+        {
+            playerTimer -= Time.deltaTime;
+            if (playerTimer <= 0)
+            {
+                playerTimer = 1;
+                playerHit = false;
+            }
+        }
+
         if (boss_State == 1)
         {
             if (target != null)
@@ -97,18 +142,23 @@ public class Boss : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            float height = collision.contacts[0].point.y - headPoint.position.y;
+            height = collision.contacts[0].point.y - headPoint.position.y;
             if (boss_State == 1 && playerCurrentHealth >= 1 && bossCurrentHealth > 0)
             {
-                if(height > 0 && !player_Destroyed)
+                if(height > 0 && !player_Destroyed && vulnerable)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 12, ForceMode2D.Impulse);
-                    BossTakeDamage(1);
+                    if(bossHit == false)
+                    {
+                        BossTakeDamage(1);
+                        bossHit = true;
+                    }
+                    
                     if (bossCurrentHealth <= 0)
                     {
                         knockback -= 2;
-                        bossSpeed += 1;
-                        boss_State += 1;
+                        bossSpeed = 0;
+                        vulnerable = false;
                         bossMaxHealth = 5;
                         bossCurrentHealth = bossMaxHealth + 1;
                         bossHealthBar.SetMaxHealth(bossMaxHealth);
@@ -117,7 +167,12 @@ public class Boss : MonoBehaviour
                 }
                 else
                 {
-                    PlayerTakeDamage(1);
+                    if (playerHit == false)
+                    {
+                        PlayerTakeDamage(1);
+                        playerHit = true;
+                    }
+
                     if (enemy_position.position.x > target.position.x)
                     {
                         rig.velocity = new Vector2(knockback, knockback);
@@ -132,15 +187,19 @@ public class Boss : MonoBehaviour
 
             if (boss_State == 2 && playerCurrentHealth >= 1 && bossCurrentHealth > 0)
             {
-                if (height > 0 && !player_Destroyed )
+                if (height > 0 && !player_Destroyed && vulnerable)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-                    BossTakeDamage(1);
+                    if (bossHit == false)
+                    {
+                        BossTakeDamage(1);
+                        bossHit = true;
+                    }
                     if (bossCurrentHealth <= 0)
                     {
-                        boss_State += 1;
                         knockback -= 2;
-                        bossSpeed += 1;
+                        bossSpeed = 0;
+                        vulnerable = false;
                         bossMaxHealth = 7;
                         bossCurrentHealth = bossMaxHealth + 1;
                         bossHealthBar.SetMaxHealth(bossMaxHealth);
@@ -148,7 +207,12 @@ public class Boss : MonoBehaviour
                 }
                 else
                 {
-                    PlayerTakeDamage(1);
+                    if (playerHit == false)
+                    {
+                        PlayerTakeDamage(1);
+                        playerHit = true;
+                    }
+
                     if (enemy_position.position.x > target.position.x)
                     {
                         rig.velocity = new Vector2(knockback, knockback);
@@ -163,10 +227,15 @@ public class Boss : MonoBehaviour
 
             if (boss_State == 3 && playerCurrentHealth >= 1 && bossCurrentHealth > 0)
             {
-                if (height > 0 && !player_Destroyed)
+                bossSpeed = 4;
+                if (height > 0 && !player_Destroyed && vulnerable)
                 {
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 08, ForceMode2D.Impulse);
-                    BossTakeDamage(1);
+                    if (bossHit == false)
+                    {
+                        BossTakeDamage(1);
+                        bossHit = true;
+                    }
                     if (bossCurrentHealth <= 0)
                     {
                         bossSpeed = 0;
@@ -178,7 +247,12 @@ public class Boss : MonoBehaviour
                 }
                 else
                 {
-                    PlayerTakeDamage(1);
+                    if (playerHit == false)
+                    {
+                        PlayerTakeDamage(1);
+                        playerHit = true;
+                    }
+
                     if (enemy_position.position.x > target.position.x)
                     {
                         rig.velocity = new Vector2(knockback, knockback);

@@ -71,6 +71,7 @@
     <Compile Include="Assets\Pixel Adventure 1\Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Pixel Adventure 1\Assets\Scripts\Health_Bar.cs" />
     <Compile Include="Assets\Pixel Adventure 1\Assets\Scripts\Next_Level.cs" />
+    <Compile Include="Assets\Pixel Adventure 1\Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Pixel Adventure 1\Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Pixel Adventure 1\Assets\Scripts\Trampolim.cs" />
     <Reference Include="Unity.Timeline.Editor">
